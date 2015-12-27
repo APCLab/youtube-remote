@@ -1,0 +1,10 @@
+[/]
+tools.staticdir.root = "/path/to/this/repo"
+
+[/ws]
+tools.websocket.on = True
+tools.websocket.handler_cls = ws.ControlWebSocket
+
+[/static]
+tools.staticdir.on = True
+tools.staticdir.dir = 'static'
