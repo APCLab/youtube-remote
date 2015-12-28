@@ -23,11 +23,11 @@ var action = {
     console.log("[add handler]")
     console.log(link)
 
-    if (link.v) {
-      player.loadVideoById({videoId: link.v})
-    }
-    else if (link.list) {
+    if (link.list) {
       player.loadPlaylist({list: link.list[0]})
+    }
+    else if (link.v) {
+      player.loadVideoById({videoId: link.v})
     }
   },
 }
