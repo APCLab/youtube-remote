@@ -4,7 +4,10 @@ from jinja2 import Environment, FileSystemLoader
 from ws4py.server.cherrypyserver import WebSocketPlugin, WebSocketTool
 
 
-cherrypy.config.update({'server.socket_host': '0.0.0.0'})
+cherrypy.config.update({
+    'server.socket_host': '0.0.0.0',
+    'server.socket_port': 5005
+})
 env = Environment(loader=FileSystemLoader('templates'))
 WebSocketPlugin(cherrypy.engine).subscribe()
 cherrypy.tools.websocket = WebSocketTool()

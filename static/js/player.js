@@ -21,7 +21,6 @@ var action = {
   },
   add: function(link){
     console.log("[add handler]")
-    console.log(link)
 
     if (link.list) {
       player.loadPlaylist({list: link.list[0]})
