@@ -25,21 +25,25 @@
         Users
       </a>
       <div class="right menu">
-        <div class="item">
-          <i class="search link icon"></i>
+        <div class="red active item">
+          <i class="warning sign icon"></i>
+          Disconnected
+        </div>
+        <div class="green active item">
+          <i class="check circle icon"></i>
+          Connected
         </div>
       </div>
     </div>
-    <div class="ui segment">
-      <button type="button" class="ui button" id="play-btn"><i class="icon play"></i></button>
-      <br>
-      <button type="button" class="ui button" id="pause-btn"><i class="icon pause"></i></button>
-      <br>
-      <button type="button" class="ui button" id="stop-btn"><i class="icon stop"></i></button>
-      <br>
-      <div class="ui action input">
+    <div class="ui segment" id="main-content">
+      <div class="ui three item menu">
+        <a class="item" id="play-btn"><i class="icon play"></i></a>
+        <a class="item" id="pause-btn"><i class="icon pause"></i></a>
+        <a class="item" id="stop-btn"><i class="icon stop"></i></a>
+      </div>
+      <div class="ui action input" id="yt-add">
         <input placeholder="Add YouTube link" type="text" id="new-link">
-        <button type="button" class="ui button" id="add-btn"><i class="icon plus"></i></button>
+        <button type="button" class="ui icon button" id="add-btn"><i class="icon plus"></i></button>
       </div>
     </div>
   </div>
