@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>apclab music</title>
+  <!-- Load libs  -->
   <link rel="stylesheet" href="/static/vendor/node_modules/semantic-ui-css/semantic.min.css" type="text/css" charset="utf-8">
   <link rel="stylesheet" href="/static/css/index.css" type="text/css" charset="utf-8">
   <script src="/static/js/jquery/jquery-2.1.4.min.js"></script>
-  <script src="static/vendor/node_modules/semantic-ui-css/semantic.min.js"></script>
+  <script src="/static/vendor/node_modules/semantic-ui-css/semantic.min.js"></script>
+  <script src="/static/vendor/node_modules/angular2/bundles/angular2-polyfills.min.js"></script>
+  <script src="/static/vendor/node_modules/rxjs/bundles/Rx.umd.min.js"></script>
+  <script src="/static/vendor/node_modules/angular2/bundles/angular2-all.umd.min.js"></script>
+
   <script src="/static/js/app.js"></script>
 </head>
 <body>
@@ -25,14 +30,7 @@
         Users
       </a>
       <div class="right menu">
-        <div class="red active item">
-          <i class="warning sign icon"></i>
-          Disconnected
-        </div>
-        <div class="green active item">
-          <i class="check circle icon"></i>
-          Connected
-        </div>
+        <connect-status></connect-status>
       </div>
     </div>
     <div class="ui segment" id="main-content">
