@@ -1,3 +1,4 @@
 .python-version
 *.py[co]
 app.conf
+node_modules
