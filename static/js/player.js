@@ -20,8 +20,6 @@ var action = {
     player.stopVideo()
   },
   add: function(link){
-    console.log("[add handler]")
-
     if (link.list) {
       player.loadPlaylist({list: link.list[0]})
     }
@@ -29,11 +27,50 @@ var action = {
       player.loadVideoById({videoId: link.v})
     }
   },
+  get_info: function(name){
+    if (! name || name == [])
+      return
+
+    msg = {}
+    name.forEach(function(e){
+      if (e === 'title') {
+        msg.title = player.B.videoData.title
+      }
+      else if (e === 'id') {
+        msg.id = player.getVideoData().video_id
+      }
+      else if (e === 'author') {
+        msg.author = player.B.videoData.author
+      }
+      else if (e === 'volume') {
+        msg.volume = player.B.volume
+      }
+      else if (e === 'player_state') {
+        msg.player_state = status_map[player.getPlayerState()]
+      }
+      else if (e === 'current_time') {
+        msg.current_time = player.getCurrentTime()
+      }
+      else if (e === 'duration') {
+        msg.duration = player.getDuration()
+      }
+      else if (e === 'muted') {
+        msg.muted = player.B.muted
+      }
+    })
+
+    if (msg == {})
+      return
+
+    ws.send_obj({
+      action: 'get_info',
+      data: msg,
+    })
+  },
 }
 
 var action_handler = function(action_type, data){
   console.log("[action handler] " + action_type)
-  console.log(action_type === 'pause')
 
   if (action_type === 'play') {
     action.play()
@@ -41,11 +78,14 @@ var action_handler = function(action_type, data){
   else if (action_type === 'pause') {
     action.pause()
   }
-  else if (action_type=== 'stop') {
+  else if (action_type === 'stop') {
     action.stop()
   }
   else if (action_type === 'add') {
     action.add(data.link)
+  }
+  else if (action_type === 'get_info'){
+    action.get_info(data.name)  // name = [ ... ]
   }
 }
 
@@ -57,6 +97,8 @@ var ws_connect = function(){
   ws = new WebSocket('ws://' + window.location.host + '/ws')
 
   ws.send_obj = function(obj){
+    obj.audio = obj.audio || 'server'
+
     ws.send(JSON.stringify(obj))
   }
 
@@ -109,7 +151,6 @@ function onPlayerStateChange(event) {
   status = event.data
   
   ws.send_obj({
-    audio: "XD",
     action: "status_change",
     data: status_map[status]
   })
