@@ -25,8 +25,11 @@ class ControlWebSocket(WebSocket):
             action = data['action']
 
             assert(client or audio)
-        except (ValueError, KeyError, AssertionError):
+        except ValueError:
             self.send(json.dumps({'error': 'Invalid JSON'}))
+            return
+        except (KeyError, AssertionError):
+            self.send(json.dumps({'error': 'missing key "audio" or "client"'}))
             return
 
         if client:
@@ -42,15 +45,19 @@ class ControlWebSocket(WebSocket):
         if action == 'join':
             logger.debug('[client join] {}'.format(format_addresses(self)))
             client_manager.add(self)
+
         elif action == 'play':
             logger.debug('[action] play')
             audio_manager.broadcast(json.dumps({'action': 'play'}))
+
         elif action == 'pause':
             logger.debug('[action] pause')
             audio_manager.broadcast(json.dumps({'action': 'pause'}))
+
         elif action == 'stop':
             logger.debug('[action] stop')
             audio_manager.broadcast(json.dumps({'action': 'stop'}))
+
         elif action == 'add':
             link = data.get('link')
 
@@ -68,6 +75,18 @@ class ControlWebSocket(WebSocket):
             }))
             return {'ok': True, 'msg': 'link {} added'.format(link)}
 
+        elif action == 'get_info':
+            name = data.get('name')
+
+            if not name:
+                return {'error': 'missing name for get_info'}
+            logger.debug('[action] get_info: {}'.format(name))
+
+            audio_manager.broadcast(json.dumps({
+                'action': 'get_info',
+                'name': name,
+            }))
+
         return {'ok': True}
 
     def audio_handler(self, audio, data):
@@ -81,6 +100,12 @@ class ControlWebSocket(WebSocket):
             client_manager.broadcast(json.dumps({
                 'action': 'status_change',
                 'data': data['data'],
+            }))
+        elif action == 'get_info':
+            logger.debug('[audio get_info]')
+            client_manager.broadcast(json.dumps({
+                'action': 'get_info',
+                'data': data['data']
             }))
 
         return {'ok': True}
