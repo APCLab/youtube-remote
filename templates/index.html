@@ -52,7 +52,56 @@
         <input placeholder="Add YouTube link" type="text" id="new-link">
         <button type="button" class="ui icon button" id="add-btn"><i class="icon plus"></i></button>
       </div>
-    </div>
-  </div>
+      <h4 class="ui horizontal divider header">
+        <i class="dashboard icon"></i>
+      </h4>
+      <div id="info-panel">
+        <div id="info-panel-current" class="ui two column grid segment">
+          <div class="four wide column">
+            <div class="ui fluid image">
+              <div class="ui blue ribbon label">
+                [[ player_state ]]
+              </div>
+
+              <img src="//img.youtube.com/vi/[[ id ]]/0.jpg">
+            </div>
+          </div><!-- div#column -->
+          <div class="twelve wide column">
+            <div class="ui large divided list">
+              <div class="item">
+                <i class="large sound icon"></i>
+                <div class="middle aligned content">
+                  [[ title ]]
+                </div>
+              </div>
+              <div class="item">
+                <i class="large user icon"></i>
+                <div class="middle aligned content">
+                  Added by [[ user ]]
+                </div>
+              </div>
+              <div class="item">
+                <i class="icon"></i>
+                <div class="content">
+                </div>
+              </div>
+            </div>
+          </div><!-- div#column -->
+          <!-- <div class="blurring dimmable image"> -->
+          <!--   <div class="ui inverted dimmer"> -->
+          <!--     <div class="content"> -->
+          <!--       <div class="center"> -->
+          <!--         <div class="ui primary button"> -->
+          <!--           <i class="icon play"></i> -->
+          <!--           Play it now! -->
+          <!--         </div> -->
+          <!--       </div> -->
+          <!--     </div> -->
+          <!--   </div> -->
+          <!-- </div> -->
+        </div><!-- div#info-panel-current -->
+      </div><!-- div#info-panel -->
+    </div><!-- div#main-content -->
+  </div><!-- div#main-wrapper -->
 </body>
 </html>
