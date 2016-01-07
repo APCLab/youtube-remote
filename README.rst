@@ -10,7 +10,7 @@ Setup dependencies
 - ``python34+``
 - ``virtualenv`` recommended
 - ``npm`` for installing
-    + ``angular2``
+    + ``vue.js``
     + ``semantic ui``
 
 ::
@@ -24,6 +24,12 @@ Run
 ::
 
     $ python3 app.py
+
+
+TODO
+----------------------------------------------------------------------
+
+- repeat mode
 
 
 License
