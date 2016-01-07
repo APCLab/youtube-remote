@@ -46,6 +46,9 @@ ws_connect = function(){
     if (d.action === 'get_info') {
       jQuery.extend(player_info, d.data)
     }
+    else if (d.action === 'status_change') {
+      player_info.player_state = d.data
+    }
   }
 
   ws.onerror = function(e){
@@ -125,6 +128,11 @@ $(document).ready(function() {
 
   var infoPanel = new Vue({
     el: '#info-panel',
+    data: player_info,
+  })
+
+  var controlPanel = new Vue({
+    el: '#control-panel',
     data: player_info,
   })
 });
