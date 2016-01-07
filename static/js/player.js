@@ -31,10 +31,12 @@ var action = {
       return
 
     action.user = user
+
+    action.get_info()
   },
   get_info: function(name){
-    if (! name || name == [])
-      return
+    name = name || ['id', 'title', 'author', 'volume', 'player_state',
+                    'current_time', 'duration', 'muted', 'user']
 
     msg = {}
     name.forEach(function(e){
@@ -163,6 +165,9 @@ function onPlayerStateChange(event) {
     action: "status_change",
     data: status_map[status]
   })
+
+  if (status_map[status] === 'buffering')  // force refecsh info
+    action.get_info()
 }
 
 // youtube iframe api
