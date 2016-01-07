@@ -71,6 +71,7 @@ class ControlWebSocket(WebSocket):
             logger.debug('[action] add')
             audio_manager.broadcast(json.dumps({
                 'action': 'add',
+                'user': client,
                 'link': link_param,
             }))
             return {'ok': True, 'msg': 'link {} added'.format(link)}

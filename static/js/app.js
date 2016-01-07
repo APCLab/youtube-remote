@@ -11,6 +11,7 @@ var player_info = {
    'current_time':  null,
    'duration':      null,
    'muted':         null,
+   'user':          null,
 }
 
 Vue.config.delimiters = ['[[', ']]']
@@ -61,7 +62,7 @@ ws_connect = function(){
 
   ws.get_info = function(name){
     name = name || ['id', 'title', 'author', 'volume', 'player_state',
-                    'current_time', 'duration', 'muted']
+                    'current_time', 'duration', 'muted', 'user']
 
     ws.send_obj({
       action: 'get_info',

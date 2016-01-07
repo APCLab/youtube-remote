@@ -19,13 +19,18 @@ var action = {
   stop: function() {
     player.stopVideo()
   },
-  add: function(link){
+  add: function(link, user){
     if (link.list) {
       player.loadPlaylist({list: link.list[0]})
     }
     else if (link.v) {
       player.loadVideoById({videoId: link.v})
     }
+
+    if (!user)
+      return
+
+    action.user = user
   },
   get_info: function(name){
     if (! name || name == [])
@@ -57,6 +62,9 @@ var action = {
       else if (e === 'muted') {
         msg.muted = player.B.muted
       }
+      else if (e === 'user') {
+        msg.user = action.user
+      }
     })
 
     if (msg == {})
@@ -67,6 +75,7 @@ var action = {
       data: msg,
     })
   },
+  user: null,
 }
 
 var action_handler = function(action_type, data){
@@ -82,7 +91,7 @@ var action_handler = function(action_type, data){
     action.stop()
   }
   else if (action_type === 'add') {
-    action.add(data.link)
+    action.add(data.link, data.user)
   }
   else if (action_type === 'get_info'){
     action.get_info(data.name)  // name = [ ... ]
