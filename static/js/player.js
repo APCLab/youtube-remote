@@ -166,7 +166,7 @@ function onPlayerStateChange(event) {
     data: status_map[status]
   })
 
-  if (status_map[status] === 'buffering')  // force refecsh info
+  if (status_map[status] === 'playing')  // force refecsh info
     action.get_info()
 }
 

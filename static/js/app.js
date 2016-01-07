@@ -75,35 +75,26 @@ ws_connect = function(){
 }
 ws_connect()
 
+var remote_player = {
+  play: function(){
+    ws.send_obj({
+      action: "play",
+    })
+  },
+  pause: function(){
+    ws.send_obj({
+      action: "pause",
+    })
+  },
+  stop: function(){
+    ws.send_obj({
+      action: "stop",
+    })
+  },
+}
+
 
 $(document).ready(function() {
-  $('#play-btn').click(function(){
-    var playload = {
-      client: "name",
-      action: "play"
-    }
-
-    ws.send(JSON.stringify(playload))
-  })
-
-  $('#pause-btn').click(function(){
-    var playload = {
-      client: "name",
-      action: "pause"
-    }
-
-    ws.send(JSON.stringify(playload))
-  })
-
-  $('#stop-btn').click(function(){
-    var playload = {
-      client: "name",
-      action: "stop"
-    }
-
-    ws.send(JSON.stringify(playload))
-  })
-
   $('#add-btn').click(function(){
     var link = $('#new-link').val()
 
@@ -114,7 +105,7 @@ $(document).ready(function() {
 
     var playload = {
       action: "add",
-      link: link
+      link: link,
     }
 
     ws.send_obj(playload)
@@ -134,5 +125,6 @@ $(document).ready(function() {
   var controlPanel = new Vue({
     el: '#control-panel',
     data: player_info,
+    methods: remote_player,
   })
 });
