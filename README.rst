@@ -18,12 +18,12 @@ Setup dependencies
     $ make
 
 
-Run
+Run Broker
 ----------------------------------------------------------------------
 
 ::
 
-    $ python3 app.py
+    $ python3 app.py [host [port]]
 
 
 TODO
