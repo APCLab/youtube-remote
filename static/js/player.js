@@ -41,16 +41,16 @@ var action = {
     msg = {}
     name.forEach(function(e){
       if (e === 'title') {
-        msg.title = player.B.videoData.title
+        msg.title = player.getVideoData().title
       }
       else if (e === 'id') {
         msg.id = player.getVideoData().video_id
       }
       else if (e === 'author') {
-        msg.author = player.B.videoData.author
+        msg.author = player.getVideoData().author
       }
       else if (e === 'volume') {
-        msg.volume = player.B.volume
+        msg.volume = player.getVideoData().volume
       }
       else if (e === 'player_state') {
         msg.player_state = status_map[player.getPlayerState()]
@@ -62,7 +62,7 @@ var action = {
         msg.duration = player.getDuration()
       }
       else if (e === 'muted') {
-        msg.muted = player.B.muted
+        msg.muted = player.isMuted()
       }
       else if (e === 'user') {
         msg.user = action.user
