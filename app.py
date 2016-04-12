@@ -29,6 +29,7 @@ class YouTubeRemote:
 if __name__ == '__main__':
     cherrypy.config.update({
         'server.socket_host': sys.argv[1] if len(sys.argv) > 1 else '0.0.0.0',
-        'server.socket_port': sys.argv[2] if len(sys.argv) > 2 else 5005
+        'server.socket_port': sys.argv[2] if len(sys.argv) > 2 else 5005,
+        'server.socket_queue_size': 1024
     })
     cherrypy.quickstart(YouTubeRemote(), config='app.conf')
