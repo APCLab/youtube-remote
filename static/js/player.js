@@ -77,6 +77,16 @@ var action = {
       data: msg,
     })
   },
+  set_vol: function(val){
+    player.setVolume(val)
+
+    ws.send_obj({
+      action: 'get_info',
+      data: {
+        volume: val,
+      },
+    })
+  },
   user: null,
 }
 
@@ -97,6 +107,9 @@ var action_handler = function(action_type, data){
   }
   else if (action_type === 'get_info'){
     action.get_info(data.name)  // name = [ ... ]
+  }
+  else if (action_type === 'set_vol'){
+    action.set_vol(data.value)
   }
 }
 

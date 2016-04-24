@@ -88,6 +88,17 @@ class ControlWebSocket(WebSocket):
                 'name': name,
             }))
 
+        elif action == 'set_vol':
+            value = data.get('value', None)
+            if not value:
+                return {'error': 'missing value for set_vol'}
+            logger.debug('[action] set_vol: {}'.format(value))
+
+            audio_manager.broadcast(json.dumps({
+                'action': 'set_vol',
+                'value': value,
+            }))
+
         return {'ok': True}
 
     def audio_handler(self, audio, data):

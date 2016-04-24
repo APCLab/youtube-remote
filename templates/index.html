@@ -61,6 +61,13 @@
           >
           <i class="icon stop"></i>
         </button>
+        <span id="vol-panel">
+          <button class="ui circular icon button" id="mute-btn">
+            [[ volume ]]
+          </button>
+          <input id="vol-slider" type="range" min="0" max="100" 
+                 v-model="volume" v-on:change="set_vol">
+        </span>
       </div>
       <div class="ui action input" id="yt-add">
         <input placeholder="Add YouTube link" type="text" id="new-link">

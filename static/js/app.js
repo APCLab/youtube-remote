@@ -91,6 +91,12 @@ var remote_player = {
       action: "stop",
     })
   },
+  set_vol: function(){
+    ws.send_obj({
+      action: "set_vol",
+      value: player_info.volume
+    })
+  },
 }
 
 
@@ -124,6 +130,12 @@ $(document).ready(function() {
 
   var controlPanel = new Vue({
     el: '#control-panel',
+    data: player_info,
+    methods: remote_player,
+  })
+
+  var volumePanel = new Vue({
+    el: '#vol-panel',
     data: player_info,
     methods: remote_player,
   })
