@@ -82,7 +82,11 @@
         <div id="info-panel-current" class="ui two column grid segment">
           <div class="four wide column">
             <div class="ui fluid image">
-              <div class="ui blue ribbon label">
+              <div class="ui ribbon label"
+                   v-bind:class="{
+                     'blue': (player_state === 'playing'),
+                     'orange': (player_state !== 'playing')
+                   }">
                 [[ player_state ]]
               </div>
 
