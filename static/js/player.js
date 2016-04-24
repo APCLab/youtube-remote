@@ -50,7 +50,7 @@ var action = {
         msg.author = player.getVideoData().author
       }
       else if (e === 'volume') {
-        msg.volume = player.getVideoData().volume
+        msg.volume = player.getVolume()
       }
       else if (e === 'player_state') {
         msg.player_state = status_map[player.getPlayerState()]
