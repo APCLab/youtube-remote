@@ -32,6 +32,7 @@ TODO
 - repeat mode
 - ``next`` button
 - bookmark for user
+- Error msg for add link failure
 
 
 License

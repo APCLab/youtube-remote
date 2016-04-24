@@ -44,6 +44,11 @@
     </div>
     <div class="ui segment" id="main-content">
       <div id="control-panel">
+        <button class="ui circular icon button" id="add-btn"
+                v-bind:class="{'disabled': !new_link, 'blue': new_link}"
+                >
+          <i class="icon plus"></i>
+        </button>
         <button class="ui circular icon button" id="play-btn"
            v-if="player_state && player_state !== 'playing' && player_state != 'buffering'"
            v-on:click="play()"
@@ -69,9 +74,9 @@
                  v-model="volume" v-on:change="set_vol">
         </span>
       </div>
-      <div class="ui action input" id="yt-add">
-        <input placeholder="Add YouTube link" type="text" id="new-link">
-        <button type="button" class="ui icon button" id="add-btn"><i class="icon plus"></i></button>
+      <div class="ui input" id="yt-add">
+        <input placeholder="Add YouTube link" type="text" id="new-link"
+               v-model="new_link">
       </div>
       <div id="info-panel">
         <div id="info-panel-current" class="ui two column grid segment">

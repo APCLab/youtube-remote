@@ -12,6 +12,7 @@ var player_info = {
    'duration':      null,
    'muted':         null,
    'user':          null,
+   'new_link':      null,
 }
 
 Vue.config.delimiters = ['[[', ']]']
@@ -99,7 +100,6 @@ var remote_player = {
   },
 }
 
-
 $(document).ready(function() {
   $('#add-btn').click(function(){
     var link = $('#new-link').val()
@@ -138,5 +138,9 @@ $(document).ready(function() {
     el: '#vol-panel',
     data: player_info,
     methods: remote_player,
+  })
+  var ytAdd = new Vue({
+    el: '#yt-add',
+    data: player_info,
   })
 });
