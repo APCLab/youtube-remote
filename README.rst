@@ -31,7 +31,6 @@ TODO
 
 - repeat mode
 - ``next`` button
-- ``volume`` slider
 - bookmark for user
 
 
